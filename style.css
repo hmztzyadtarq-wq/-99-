@@ -122,27 +122,62 @@ img { display: block; max-width: 100%; }
 .cookies span { padding-inline: 20px; }
 .cookies.hide { display: none; }
 
-/* ---------- 13) التابلت والموبايل ---------- */
+/* ---------- 13) التابلت والموبايل (نفس شكل Etoile) ---------- */
+.burger, .overlay { display: none; }
+.header { border-bottom: 1px solid var(--line); }
+
 @media (max-width: 900px) {
-  .header-row { height: auto; flex-wrap: wrap; padding: 12px 0; justify-content: center; gap: 12px; }
-  .actions { flex-wrap: wrap; justify-content: center; margin: 0; row-gap: 10px; font-size: 14px; }
-  .search { width: 100%; margin: 0; }
   .topbar { gap: 6px 16px; font-size: 11px; height: auto; padding: 6px 8px; flex-wrap: wrap; }
-  .nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .nav > ul { height: auto; flex-wrap: nowrap; justify-content: flex-start; width: max-content; min-width: 100%; padding-inline: 8px; }
-  .nav > ul > li > a { white-space: nowrap; }
-  .drop { position: fixed; top: auto; right: 8px; }
-  .slider { aspect-ratio: 16 / 9; border-radius: 18px; }
-  .arrow { width: 36px; height: 36px; }
+
+  /* الهيدر: صف 1 = ☰ + لوجو + بحث  |  صف 2 = الحساب والسلة والعنوان */
+  .header-row { height: auto; flex-wrap: wrap; justify-content: flex-start; padding: 14px 0 10px; gap: 10px 12px; }
+  .burger { order: 1; display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 48px; height: 42px; padding: 0 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; cursor: pointer; }
+  .burger span { display: block; height: 2px; background: #444; border-radius: 2px; }
+  .logo { order: 2; }
+  .logo img, .logo .ph { width: 96px; height: 58px; }
+  .search { order: 3; flex: 1; width: auto; min-width: 0; margin: 0; height: 44px; padding-inline: 18px 14px; }
+  .actions { order: 4; width: 100%; margin: 0; flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; white-space: nowrap; font-size: 13.5px; padding-bottom: 4px; scrollbar-width: none; }
+  .actions::-webkit-scrollbar { display: none; }
+  .act { flex: 0 0 auto; padding-inline: 12px; }
+  .actions .act:first-child { margin-inline-start: auto; }
+  .actions .act:last-child { margin-inline-end: auto; }
+
+  /* القائمة بتبقى درج جانبي بيفتح من اليمين */
+  .nav { position: fixed; top: 0; right: 0; bottom: 0; width: 280px; max-width: 85%; background: #fff; z-index: 60; border: 0; overflow-y: auto; transform: translateX(100%); transition: transform .3s ease; box-shadow: -6px 0 24px rgba(0,0,0,.2); }
+  .nav.open { transform: none; }
+  .nav > ul { flex-direction: column; align-items: stretch; justify-content: flex-start; width: auto; min-width: 0; height: auto; gap: 0; padding: 56px 0 24px; }
+  .nav > ul > li > a { padding: 14px 22px; border-radius: 0; border-bottom: 1px solid var(--line); white-space: normal; }
+  .drop { position: static; display: none; width: auto; margin: 0; box-shadow: none; border-radius: 0; background: var(--cream); padding: 0; }
+  .has-drop:hover .drop { display: none; }
+  .has-drop.open .drop { display: block; }
+  .drop a { padding: 12px 38px; }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 55; }
+  .overlay.show { display: block; }
+
+  /* البانر: حواف مدورة + ظل */
+  .slider { margin-top: 16px; aspect-ratio: 16 / 9; border-radius: 22px; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+  .arrow { display: none; }
+
   .cats { gap: 16px; }
-  .promos { grid-template-columns: 1fr; }
+
+  /* البانرات الإعلانية */
+  .promos { grid-template-columns: 1fr; gap: 16px; margin-top: 30px; }
+  .promo { aspect-ratio: 16 / 6; border-radius: 20px; box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+
+  /* المنتجات: سلايدر أفقي بالسحب */
+  #productSections { background: #f4fafc; margin-top: 24px; padding: 4px 0 24px; }
+  .grid { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .grid::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 220px; scroll-snap-align: start; }
+
   .foot-row { gap: 24px; }
   .cookies { height: auto; flex-wrap: wrap; font-size: 13px; }
 }
 @media (max-width: 560px) {
-  .logo img, .logo .ph { width: 110px; height: 66px; }
-  .act { padding-inline: 10px; }
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .logo img, .logo .ph { width: 80px; height: 50px; }
+  .act { padding-inline: 9px; }
+  .actions { font-size: 12.5px; }
+  .card { flex-basis: 180px; }
   .card-body { padding: 10px; }
   .card-body h3 { font-size: 14px; }
   .card-body p { font-size: 12px; min-height: 0; }
