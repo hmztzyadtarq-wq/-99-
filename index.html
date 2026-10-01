@@ -30,7 +30,7 @@
 
 <!-- ============ 1) الشريط الذهبي العلوي ============ -->
 <div class="topbar">
-  <span><svg class="ic"><use href="#i-phone"/></svg> اتصل بنا: 01140090339</span>
+  <span><svg class="ic"><use href="#i-phone"/></svg> اتصل بنا: 16312</span>
   <span><svg class="ic"><use href="#i-truck"/></svg> وقت التوصيل من ٤٥ : ٦٠ دقيقة</span>
   <span><svg class="ic"><use href="#i-mail"/></svg> طرق دفع سهلة</span>
 </div>
@@ -39,10 +39,13 @@
 <header class="header">
   <div class="container header-row">
 
+    <!-- زرار القائمة (بيظهر في الموبايل بس) -->
+    <button class="burger" id="burger" type="button" aria-label="القائمة"><span></span><span></span><span></span></button>
+
     <!-- اللوجو (يمين) -->
-    <!-- 🖼 حط الصورة هنا:logo.png -->
+    <!-- 🖼 حط الصورة هنا: images/logo.png -->
     <a href="index.html" class="logo" id="logoLink">
-      <img src="logo.png" alt="حلو الملك" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph ph-logo',textContent:'اللوجو'}))">
+      <img src="images/logo.png" alt="حلو الملك" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph ph-logo',textContent:'اللوجو'}))">
     </a>
 
     <!-- مربع البحث -->
@@ -56,7 +59,7 @@
       <a href="#" data-nf class="act"><svg class="ic gold"><use href="#i-user"/></svg> تسجيل دخول</a>
       <a href="#" data-nf class="act">انشاء حساب</a>
       <a href="#" data-nf class="act"><svg class="ic gold lg"><use href="#i-basket"/></svg> <span id="cartCount">0</span> منتج (ات)</a>
-      <a href="#" data-nf class="act"><svg class="ic gold"><use href="#i-pin"/></svg> مدينه بدر <em>تغيير</em></a>
+      <a href="#" data-nf class="act"><svg class="ic gold"><use href="#i-pin"/></svg> مكرم عبيد <em>تغيير</em></a>
       <a href="#" data-nf class="act"><span class="flag"></span> العربيه</a>
     </div>
   </div>
@@ -79,29 +82,19 @@
           <li><a href="#" data-nf>علب شرقي جاهزة</a></li>
         </ul>
       </li>
-       <nav class="nav">
-    <ul class="container">
-      <li><a href="#" data-nf>الخصومات</a></li>
-      <li><a href="#" data-nf>مطعم</a></li>
-      <li class="has-drop">
-        <a href="#" data-nf>شرقي</a>
-        <!-- القائمة المنسدلة -->
-        <ul class="drop">
-          <li><a href="#" data-nf>بسبوسه</a></li>
-          <li><a href="#" data-nf>علب مشكل</a></li>
-          <li><a href="#" data-nf>مكس شرقي</a></li>
-          <li><a href="#" data-nf>جلاش</a></li>
-          <li><a href="#" data-nf>اطباق</a></li>
-          <li><a href="#" data-nf>كنافه</a></li>
-          <li><a href="#" data-nf>علب شرقي جاهزة</a></li>
-        </ul>
+      <li><a href="#" data-nf>حلويات غربية</a></li>
       <li><a href="#" data-nf>ميكس سويت</a></li>
       <li><a href="#" data-nf>مخبوزات</a></li>
       <li><a href="#" data-nf>شيكولاته</a></li>
+      <li><a href="#" data-nf>كحك 2026</a></li>
+      <li><a href="#" data-nf>المولد 2026</a></li>
       <li><a href="#" data-nf>آيس كريم</a></li>
     </ul>
   </nav>
 </header>
+
+<!-- خلفية معتمة بتظهر ورا القائمة في الموبايل -->
+<div class="overlay" id="overlay"></div>
 
 <!-- ============ محتوى الصفحة الرئيسية ============ -->
 <main id="home">
