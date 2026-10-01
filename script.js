@@ -159,3 +159,36 @@ document.addEventListener('click', (e) => {
 ['allowCk', 'denyCk'].forEach(id =>
   document.getElementById(id).addEventListener('click', () =>
     document.getElementById('cookies').classList.add('hide')));
+
+/* ============================================================
+   5) الموبايل: قائمة الدرج + سحب البانر بالصباع
+   ============================================================ */
+const navEl = document.querySelector('.nav');
+const overlay = document.getElementById('overlay');
+const isMobile = () => window.innerWidth <= 900;
+
+function toggleMenu(open) {
+  navEl.classList.toggle('open', open);
+  overlay.classList.toggle('show', open);
+}
+document.getElementById('burger').addEventListener('click', () => toggleMenu(!navEl.classList.contains('open')));
+overlay.addEventListener('click', () => toggleMenu(false));
+
+// في الموبايل: الضغط على "حلويات مصرية" بيفتح/يقفل القائمة الفرعية بدل Not Found
+document.querySelector('.has-drop > a').addEventListener('click', (e) => {
+  if (!isMobile()) return;
+  e.preventDefault(); e.stopPropagation();
+  e.currentTarget.parentElement.classList.toggle('open');
+});
+// الضغط على أي رابط تاني في القائمة بيقفلها
+navEl.addEventListener('click', (e) => { if (e.target.closest('a') && isMobile()) toggleMenu(false); });
+
+// سحب البانر بالصباع
+let touchX = null;
+slidesEl.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+slidesEl.addEventListener('touchend', (e) => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); autoplay(); }
+  touchX = null;
+});
